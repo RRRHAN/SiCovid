@@ -4,7 +4,7 @@ include '../../assets/include-atas.php';
 
 $id = $_GET['id'];
 
-$result = mysqli_query($connect, "SELECT * FROM admin");
+$result = mysqli_query($connect, "SELECT * FROM admin WHERE id_admin = '$id'");
 $admin = mysqli_fetch_assoc($result);
 
 ?>
@@ -20,7 +20,7 @@ $admin = mysqli_fetch_assoc($result);
 </head>
 
 <body>
-    <a href="index.php"><button type="button" class="btn btn-primary ml-3 mt-3" style="width: 150px"><i class="fas fa-angle-double-left"></i> Back</button></a>
+    <a href="../admin.php"><button type="button" class="btn btn-primary ml-3 mt-3" style="width: 150px"><i class="fas fa-angle-double-left"></i> Back</button></a>
     <div class="mx-auto shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 30px; width: 1000px; border-bottom: 5px solid grey">
         <table class="table table-striped">
             <tr>

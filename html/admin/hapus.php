@@ -5,18 +5,18 @@ $id = $_GET['id'];
 
 
 
-$result = mysqli_query($connect, "DELETE FROM pasien WHERE id_pasien = $id") or die(mysqli_error($connect));
+$result = mysqli_query($connect, "DELETE FROM admin WHERE id_admin = $id") or die(mysqli_error($connect));
 
 
 
 if ($result) {
     echo "<script>
-    alert('PASIEN BERHASIL DIHAPUS');
-    document.location.href = '../pasien.php';
+    alert('ADMIN BERHASIL DIHAPUS');
+    document.location.href = '../admin.php';
     </script>";
 } else {
     echo "<script>
-    alert('PASIEN GAGAL DIHAPUS');
-    document.location.href = '../pasien.php';
+    alert('ADMIN GAGAL DIHAPUS');
+    document.location.href = '../admin.php';
     </script>";
 }

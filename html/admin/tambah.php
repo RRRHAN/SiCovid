@@ -1,59 +1,7 @@
-<?php
-include '../../assets/connect.php';
-function upload($namafoto)
-{
-    $namafile = $_FILES['foto']['name'];
-    $error = $_FILES['foto']['error'];
-    $tmpname = $_FILES['foto']['tmp_name'];
-
-    if ($error === 4) {
-        echo "<script>
-    alert('PILIH GAMBAR DAHULU');
-    </script>";
-        return false;
-    }
-
-    $ekstensifilevalid = ['jpg', 'jpeg', 'png'];
-    $ekstensi_file = explode('.', $namafile);
-    $ekstensi_file = end($ekstensi_file);
-    $ekstensifile = strtolower($ekstensi_file);
-
-    if (!in_array($ekstensifile, $ekstensifilevalid)) {
-        echo "<script>
-    alert('YANG ANDA UPLOAD BUKAN GAMBAR');
-    </script>";
-        return false;
-    }
-
-    $namafoto .= '.' . $ekstensifile;
-    move_uploaded_file($tmpname, 'img/' . $namafoto);
-
-    return $namafoto;
-}
-if (isset($_POST['simpan'])) {
-
-
-    $nama = $_POST['nama'];
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    $namafoto = implode('_', explode(' ', $nama . ' ' . $username));
-    $foto = upload($namafoto);
-    // $foto = "ok";
-
-    if ($foto) {
-        $sql = "INSERT INTO admin(id_admin, nama, username, password, foto) 
-        VALUES (null, `$nama`, `$username`, `$password`, `$foto`)";
-
-        $res = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-    }
-    $count = mysqli_affected_rows($connect);
-
-    if ($res == 1) {
-        header("Location: ../admin.php");
-    }
-}
+<?php include '../../assets/connect.php';
 
 include '../../assets/include-atas.php';
+
 ?>
 
 <head>
@@ -79,7 +27,7 @@ include '../../assets/include-atas.php';
                     <h2>Tambah Data pasien</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="" enctype="multipart/form-data">
+                    <form method="post" action="proses-tambah.php" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan nama admin">
