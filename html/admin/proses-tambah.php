@@ -1,5 +1,6 @@
 <?php
 include '../../assets/connect.php';
+include '../../login/cek-login.php';
 function upload($namafoto)
 {
     $namafile = $_FILES['foto']['name'];
@@ -7,7 +8,10 @@ function upload($namafoto)
     $tmpname = $_FILES['foto']['tmp_name'];
 
     if ($error === 4) {
-        return $namafoto;
+        echo "<script>
+    alert('PILIH GAMBAR DAHULU');
+    </script>";
+        return false;
     }
 
     $ekstensifilevalid = ['jpg', 'jpeg', 'png'];
@@ -27,33 +31,28 @@ function upload($namafoto)
 }
 
 if (isset($_POST['simpan'])) {
-    $id = $_POST['id'];
     $nama = $_POST['nama'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $namafoto = $_POST['foto'];
+    $namafoto = implode('_', explode(' ', $nama . ' ' . $username));
     $foto = upload($namafoto);
 
-    // if ($foto) {
-    $sql = "UPDATE admin SET
-            nama = '$nama',
-            username = '$username',
-            password = '$password',
-            foto = '$foto'
-            WHERE id_admin = '$id'
-        ";
+    if ($foto) {
+        $sql = "INSERT INTO admin (nama, username, password, foto) VALUES ( '$nama', '$username', '$password', '$foto')";
 
-    $res = mysqli_query($connect, $sql) or die(mysqli_error($connect));
-    // }
+        $res = mysqli_query($connect, $sql) or die(mysqli_error($connect));
+    }
     if ($res) {
         echo "<script>
-        alert('ADMIN BERHASIL DIEDIT');
+        alert('BUKU BERHASIL DITAMBAH');
         document.location.href = '../admin.php';
         </script>";
     } else {
         echo "<script>
-        alert('ADMIN GAGAL DIEDIT');
-        document.location.href = '../admin.php';
+        alert('BUKU GAGAL DITAMBAH');
+        document.location.href = 'tambah.php';
         </script>";
     }
+} else {
+    header("Location: tambah.php");
 }

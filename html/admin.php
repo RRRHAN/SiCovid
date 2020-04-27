@@ -15,8 +15,8 @@ $query = mysqli_query($connect, "SELECT * FROM admin")
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
-    <title>corona</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/icon.png">
+    <title>SiCovid</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -79,15 +79,7 @@ $query = mysqli_query($connect, "SELECT * FROM admin")
                         <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                     </li>
                     <li>
-                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="Search..." class="form-control">
-                            <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </form>
-                    </li>
-                    <li>
-                        <a class="profile-pic" href="#"> <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Steave</b></a>
+                        <a class="profile-pic" href="#"> <img src="admin/img/<?= $_SESSION['foto']; ?>" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?= $_SESSION['nama']; ?></b></a>
                     </li>
                 </ul>
             </div>
@@ -114,6 +106,9 @@ $query = mysqli_query($connect, "SELECT * FROM admin")
                     <li>
                         <a href="admin.php" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>admin</a>
                     </li>
+                    <li>
+                        <a href="about.php" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>about me</a>
+                    </li>
                 </ul>
             </div>
 
@@ -132,6 +127,11 @@ $query = mysqli_query($connect, "SELECT * FROM admin")
                     </div>
                     <div class="col-lg-1">
                         <a href="admin/tambah.php"><button type="button" class="btn btn-outline-primary">TAMBAH ADMIN</button></a>
+                    </div>
+                    <div class="col-lg-7 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li><a href="../login/logout.php">LOGOUT</a></li>
+                        </ol>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>

@@ -1,4 +1,12 @@
-<?php include '../assets/include-atas.php'; ?>
+<?php
+session_start();
+if (isset($_SESSION['id_admin'])) {
+    header("Location: http://localhost/corona/");
+    die;
+}
+include '../assets/include-atas.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

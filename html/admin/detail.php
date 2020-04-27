@@ -1,4 +1,5 @@
 <?php
+include '../../login/cek-login.php';
 include '../../assets/connect.php';
 include '../../assets/include-atas.php';
 

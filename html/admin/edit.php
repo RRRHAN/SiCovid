@@ -1,5 +1,5 @@
 <?php include '../../assets/connect.php';
-
+include '../../login/cek-login.php';
 include '../../assets/include-atas.php';
 
 function upload($namafoto)

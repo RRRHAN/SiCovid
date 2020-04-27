@@ -1,14 +1,4 @@
-<?php
-include '../login/cek-login.php';
-include '../assets/connect.php';
-// $res = mysqli_query($connect, "SELECT count(*) as jumlah_odp from pasien where id_status = 1");
-$odp = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_odp from pasien where id_status = 1"));
-$pdp = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_pdp from pasien where id_status = 2"));
-$positif = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_positif from pasien where id_status = 3"));
-$sembuh = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_sembuh from pasien where id_status = 4"));
-
-
-?>
+<?php include '../login/cek-login.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +14,6 @@ $sembuh = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_s
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- toast CSS -->
-    <link href="../plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <!-- morris CSS -->
-    <link href="../plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
-    <!-- chartist CSS -->
-    <link href="../plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
     <!-- animation CSS -->
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -65,30 +48,18 @@ $sembuh = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_s
             <div class="navbar-header">
                 <div class="top-left-part">
                     <!-- Logo -->
-                    <a class="logo" href="index.php">
-                        <!-- Logo icon image, you can use font-icon also -->
+                    <a class="logo" href="dashboard.html">
                         <b>
-                            <!-- <img src="../plugins/images/admin-logo-dark.png" alt="home" class="light-logo" /> -->
                         </b>
-                        <!-- Logo text image you can use text also -->
                         <span class="hidden-xs">
                             <img src="../img/nama.png" alt="home" class="light-logo" style="width: 80%; padding-top: 5px;" />
-                        </span>
-                    </a>
+                        </span> </a>
                 </div>
                 <!-- /Logo -->
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
                         <a class="nav-toggler open-close waves-effect waves-light hidden-md hidden-lg" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                     </li>
-                    <!-- <li>
-                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="Search..." class="form-control">
-                            <a href="">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </form>
-                    </li> -->
                     <li>
                         <a class="profile-pic" href="#"> <img src="admin/img/<?= $_SESSION['foto']; ?>" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?= $_SESSION['nama']; ?></b></a>
                     </li>
@@ -122,7 +93,6 @@ $sembuh = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_s
                     </li>
                 </ul>
             </div>
-
         </div>
         <!-- ============================================================== -->
         <!-- End Left Sidebar -->
@@ -133,81 +103,74 @@ $sembuh = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_s
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Data penyebaran Virus Corona</h4>
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">about me</h4>
                     </div>
                     <div class="col-lg-8 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="../login/logout.php">LOGOUT</a></li>
                         </ol>
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
-                <!-- ============================================================== -->
-                <!-- Different data widgets -->
-                <!-- ============================================================== -->
                 <!-- .row -->
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">ODP</h3>
-                            <ul class="list-inline two-part">
-                                <li>
-                                    <div id="sparklinedash"></div>
-                                </li>
-                                <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple"><?= $odp['jumlah_odp']; ?></span></li>
-                            </ul>
+                    <div class="col-md-4 col-xs-12">
+                        <div class="white-box">
+                            <div class="user-bg"> <img width="100%" alt="user" src="../img/fotoku.jpg">
+                                <div class="overlay-box">
+                                    <div class="user-content">
+                                        <a href="javascript:void(0)"><img src="../img/fotoku.jpg" class="thumb-lg img-circle" alt="img"></a>
+                                        <h4 class="text-white">Raihan Firmansyah</h4>
+                                        <h5 class="text-white">X RPL 7 / 31</h5>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">PDP</h3>
-                            <ul class="list-inline two-part">
-                                <li>
-                                    <div id="sparklinedash2"></div>
-                                </li>
-                                <li class="text-right"><i class="ti-arrow-up text-warning"></i> <span class="counter text-warning"><?= $pdp['jumlah_pdp']; ?></span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Positif</h3>
-                            <ul class="list-inline two-part">
-                                <li>
-                                    <div id="sparklinedash3"></div>
-                                <li class="text-right"><i class="ti-arrow-up text-danger"></i> <span class="counter text-danger"><?= $positif['jumlah_positif']; ?></span></li>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-xs-12">
-                        <div class="white-box analytics-info">
-                            <h3 class="box-title">Sembuh</h3>
-                            <ul class="list-inline two-part">
-                                <li>
-                                    <div id="sparklinedash4"></div>
-                                </li>
-                                <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success"><?= $sembuh['jumlah_sembuh']; ?></span></li>
-                            </ul>
+                    <div class="col-md-8 col-xs-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">Full Name</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Raihan Firmansyah" class="form-control form-control-line" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        <input type="email" placeholder="rehanfirmansyahr@gmail.com" class="form-control form-control-line" name="example-email" id="example-email" disabled> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Phone No</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="0895345160389" class="form-control form-control-line" disabled> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">kelas</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="X RPL 7" class="form-control form-control-line" disabled> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Absen</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="31" class="form-control form-control-line" disabled> </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2020 &copy; Raihan Firmansyah </footer>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page Content -->
-        <!-- ============================================================== -->
+        <!-- /#page-wrapper -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+    <!-- /#wrapper -->
+    <!-- jQuery -->
     <script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
@@ -217,18 +180,8 @@ $sembuh = mysqli_fetch_assoc(mysqli_query($connect, "SELECT count(*) as jumlah_s
     <script src="js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
-    <!--Counter js -->
-    <script src="../plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
-    <script src="../plugins/bower_components/counterup/jquery.counterup.min.js"></script>
-    <!-- chartist chart -->
-    <script src="../plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
-    <script src="../plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-    <!-- Sparkline chart JavaScript -->
-    <script src="../plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script src="js/dashboard1.js"></script>
-    <script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>
 </body>
 
 </html>

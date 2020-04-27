@@ -1,6 +1,6 @@
 <?php
 include '../../assets/connect.php';
-
+include '../../login/cek-login.php';
 $id = $_GET['id'];
 
 

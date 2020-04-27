@@ -1,5 +1,6 @@
 <?php
 include '../../assets/connect.php';
+include '../../login/cek-login.php';
 if (isset($_POST['simpan'])) {
     $nama = $_POST['nama'];
     $umur = $_POST['umur'];
@@ -7,10 +8,11 @@ if (isset($_POST['simpan'])) {
     $suhu = $_POST['suhu'];
     $provinsi = $_POST['provinsi'];
     $status = $_POST['status'];
-    $sql = "INSERT INTO pasien(id_pasien, nama, umur, alamat, suhu, provinsi, status)
+    $sql = "INSERT INTO pasien(id_pasien, nama, umur, alamat, suhu, id_provinsi, id_status)
     VALUES (null, '$nama', '$umur', '$alamat', '$suhu', '$provinsi', '$status')";
+    // var_dump($_POST);
 
-    $res = mysqli_query($connect, $sql);
+    $res = mysqli_query($connect, $sql) or die($connect);
 
     $count = mysqli_affected_rows($connect);
 

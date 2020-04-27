@@ -1,11 +1,12 @@
 <?php
 include '../../assets/connect.php';
 include '../../assets/include-atas.php';
+include '../../login/cek-login.php';
 
 $id = $_GET['id'];
 
 $result = mysqli_query($connect, "SELECT * FROM pasien INNER JOIN provinsi INNER JOIN status 
-WHERE pasien.provinsi = provinsi.id_provinsi AND pasien.status = status.id_status");
+WHERE pasien.id_provinsi = provinsi.id_provinsi AND pasien.id_status = status.id_status");
 $pasien = mysqli_fetch_assoc($result);
 
 ?>
@@ -21,7 +22,7 @@ $pasien = mysqli_fetch_assoc($result);
 </head>
 
 <body>
-    <a href="index.php"><button type="button" class="btn btn-primary ml-3 mt-3" style="width: 150px"><i class="fas fa-angle-double-left"></i> Back</button></a>
+    <a href="../pasien.php"><button type="button" class="btn btn-primary ml-3 mt-3" style="width: 150px"><i class="fas fa-angle-double-left"></i> Back</button></a>
     <div class="mx-auto shadow-lg p-3 mb-5 bg-white rounded" style="margin-top: 30px; width: 1000px; border-bottom: 5px solid grey">
         <table class="table table-striped">
             <tr>

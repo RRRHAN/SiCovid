@@ -1,5 +1,6 @@
 <?php
 include '../../assets/connect.php';
+include '../../login/cek-login.php';
 if (isset($_POST['simpan'])) {
 
 
@@ -16,8 +17,8 @@ if (isset($_POST['simpan'])) {
     umur = '$umur',
     alamat = '$alamat',
     suhu = '$suhu',
-    provinsi = '$provinsi',
-    status = '$status'
+    id_provinsi = '$provinsi',
+    id_status = '$status'
     WHERE id_pasien = '$id'") or die(mysqli_error($connect));
 
     if ($result) {
@@ -39,7 +40,9 @@ $id = $_GET['id'];
 $provinsi = mysqli_query($connect, "SELECT * FROM provinsi");
 $status = mysqli_query($connect, "SELECT * FROM status");
 
-$pasien = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM pasien WHERE id_pasien = '$id'"));
+$pasien = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM pasien inner join provinsi using(id_provinsi) inner join status using(id_status) WHERE id_pasien = '$id'"));
+// var_dump($pasien);
+// die;
 
 ?>
 
@@ -87,18 +90,18 @@ $pasien = mysqli_fetch_assoc(mysqli_query($connect, "SELECT * FROM pasien WHERE 
                         </div>
                         <div class="form-group">
                             <label for="provinsi">PROVINSI</label>
-                            <select name="provinsi" id="provinsi" style="width: 100%" required>
-                                <option value="<?= $pasien["provinsi"]; ?>"><?= $pasien["provinsi"]; ?></option>
+                            <select name="provinsi" id="id_provinsi" style="width: 100%" required>
+                                <option value="<?= $pasien["id_provinsi"]; ?>"><?= $pasien["provinsi"]; ?></option>
                                 <?php while ($p = mysqli_fetch_assoc($provinsi)) : ?>
-                                    <option value="<?= $pasien["id_provinsi"]; ?>"><?= $p["provinsi"]; ?></option>
+                                    <option value="<?= $p["id_provinsi"]; ?>"><?= $p["provinsi"]; ?></option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
                         <label for="status">status</label>
                         <select name="status" id="status" style="width: 100%" required>
-                            <option value="<?= $pasien["status"]; ?>"><?= $pasien["status"]; ?></option>
+                            <option value="<?= $pasien["id_status"]; ?>"><?= $pasien["status"]; ?></option>
                             <?php while ($s = mysqli_fetch_assoc($status)) : ?>
-                                <option value="<?= $k["id_status"]; ?>"><?= $s["status"]; ?></option>
+                                <option value="<?= $s["id_status"]; ?>"><?= $s["status"]; ?></option>
                             <?php endwhile; ?>
                         </select>
                 </div>
