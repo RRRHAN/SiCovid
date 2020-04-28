@@ -1,6 +1,6 @@
 <?php
 session_start();
 if (!(isset($_SESSION['id_admin']))) {
-    header("Location: http://localhost/corona/login/index.php");
+    header("Location: http://localhost/SiCovid/login/index.php");
     die;
 }

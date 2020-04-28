@@ -14,7 +14,7 @@ function upload($namafoto)
         return false;
     }
 
-    $ekstensifilevalid = ['jpg', 'jpeg', 'png'];
+    $ekstensifilevalid = ['jpg', 'jpeg', 'png', 'jfif'];
     $ekstensifile = strtolower(end(explode('.', $namafile)));
 
     if (!in_array($ekstensifile, $ekstensifilevalid)) {

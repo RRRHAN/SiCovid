@@ -22,7 +22,7 @@ if (isset($_POST['btnlogin'])) {
         // var_dump($_SESSION);
         // die;
 
-        header("Location: http://localhost/corona/index.php");
+        header("Location: http://localhost/SiCovid/index.php");
         die;
     } else {
         header("Location: index.php");

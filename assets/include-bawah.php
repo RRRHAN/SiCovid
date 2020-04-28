@@ -6,8 +6,8 @@
 </head>
 
 <body>
-    <script src="http://localhost/corona/assets/jquery.js"></script>
-    <script src="http://localhost/corona/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="http://localhost/SiCovid/assets/jquery.js"></script>
+    <script src="http://localhost/SiCovid/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
