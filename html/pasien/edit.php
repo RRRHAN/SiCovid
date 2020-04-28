@@ -23,12 +23,12 @@ if (isset($_POST['simpan'])) {
 
     if ($result) {
         echo "<script>
-        alert('BUKU BERHASIL DI EDIT');
+        alert('PASIEN BERHASIL DI EDIT');
         document.location.href = '../pasien.php';
         </script>";
     } else {
         echo "<script>
-        alert('BUKU GAGAL DI EDIT');
+        alert('PASIEN GAGAL DI EDIT');
         document.location.href = '../pasien.php';
         </script>";
     }

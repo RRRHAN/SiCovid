@@ -44,12 +44,12 @@ if (isset($_POST['simpan'])) {
     }
     if ($res) {
         echo "<script>
-        alert('BUKU BERHASIL DITAMBAH');
+        alert('ADMIN BERHASIL DITAMBAH');
         document.location.href = '../admin.php';
         </script>";
     } else {
         echo "<script>
-        alert('BUKU GAGAL DITAMBAH');
+        alert('ADMIN GAGAL DITAMBAH');
         document.location.href = 'tambah.php';
         </script>";
     }
